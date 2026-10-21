@@ -368,6 +368,17 @@ static int32_t kid_glyph_of(char c)
     return c == '1' ? 26 : c == '3' ? 27 : c == '#' ? 28 : c == '!' ? 29 : c == '5' ? 30 : c == '8' ? 31 : c == '-' ? 32 : c == '?' ? 33 : c == '7' ? 34 : c == '9' ? 35 : c == '4' ? 36 : -1;
 }
 
+/* a word of the band in Dutch (KID_NL: tools/kid_nl.py), or the word itself when it has none. Where the words reach the
+ * screen: the names and the hats are Dutch already (KID_NAME, KID_HAT_NAME) */
+static const char *kid_nl(const char *s)
+{
+    uint32_t i;
+    for (i = 0; i < KID_NL_N; i++)
+        if (KID_NL[i][0][0] == s[0] && str_eq(KID_NL[i][0], s))
+            return KID_NL[i][1];
+    return s;
+}
+
 static const int8_t KID_SIN[32] = {0, 25, 49, 71, 90, 106, 117, 125, 127, 125, 117, 106, 90, 71, 49, 25,
                                    0, -25, -49, -71, -90, -106, -117, -125, -127, -125, -117, -106, -90, -71, -49, -25};
 
@@ -2222,7 +2233,7 @@ static struct {
     const char *txt;
     kid_txt_t bt;                       /* the band's text */
     kid_txt_t bt2;                      /* .. its second line (a long name: two lines), sc 0 = none */
-    char l1[16], l2[16];
+    char l1[20], l2[20];
     char cname[12];                     /* CHORDS: the chord's name */
     uint16_t ccol[16];                  /* KB_CHORD: the colour of each of l1's letters */
     int8_t icon;                        /* ALGORITHM's mode as a picture at the band's left (KID_ICON_*), -1 none */
@@ -2369,7 +2380,7 @@ static const char *kid_drum_word(uint32_t key, uint16_t *col)
 
 static uint32_t kid_band_word(const char *s, int16_t sc, uint16_t bg, uint32_t sig)   /* a word alone in the band */
 {
-    uint32_t w = str_len(s) * 6u * (uint32_t)sc - (uint32_t)sc;
+    uint32_t w = str_len(s = kid_nl(s)) * 6u * (uint32_t)sc - (uint32_t)sc;
     kf.band = KB_NAME;
     kf.txt = kf.bt.s = s;
     kf.bt.sc = sc;
@@ -2428,14 +2439,13 @@ static uint32_t kid_chord_band_n(const uint8_t *pcs, uint32_t n, const char *nam
     kf.bt.y = (int16_t)(q ? KID_BAND_Y + 4 : KID_BAND_Y + 15);
     kf.bt2.sc = 0;
     if (q) {
-        if (named) {
-            str_cpy(kf.l2, named, sizeof kf.l2);
-        } else {
-            str_cpy(kf.l2, KID_NOTE[root], sizeof kf.l2);
-            p = kf.l2 + str_len(kf.l2);
-            *p++ = ' ';
-            str_cpy(p, q, sizeof kf.l2 - (uint32_t)(p - kf.l2));
-        }
+        if (named)                                                /* (a lesson's name: its root, a space, the kind) */
+            for (q = named; *q && *q++ != ' ';)
+                ;
+        str_cpy(kf.l2, KID_NOTE[root], sizeof kf.l2);             /* (the kind in Dutch: C GROOT) */
+        p = kf.l2 + str_len(kf.l2);
+        *p++ = ' ';
+        str_cpy(p, kid_nl(q), sizeof kf.l2 - (uint32_t)(p - kf.l2));
         kf.bt2.s = kf.l2;
         kf.bt2.sc = 3;
         kf.bt2.x = (int16_t)((240 - (int32_t)(str_len(kf.l2) * 18u - 3u)) / 2);
@@ -2555,8 +2565,8 @@ static uint32_t kid_band_setup(uint32_t now)
     if (kw.on && !(hint && (kid.hint == KH_SPEED || kid.hint == KH_NIGHT || kid.hint == KH_VOLUME || kid.hint == KH_LOOK || kid.hint == KH_HAT))) {
         /* WRITE: the friend to write with, and a word */
         kf.band = KB_NAME;
-        kf.txt = hint && kid.hint == KH_BEAT ? (kw.beat ? KID_BEATS[(kw.beat - 1u) % KB_COUNT].name : "NO BEAT") :
-                 hint && kid.hint == KH_NEWSONG ? "NEW SONG" : song.playing ? "LOOP" : "WRITE";
+        kf.txt = kid_nl(hint && kid.hint == KH_BEAT ? (kw.beat ? KID_BEATS[(kw.beat - 1u) % KB_COUNT].name : "NO BEAT") :
+                        hint && kid.hint == KH_NEWSONG ? "NEW SONG" : song.playing ? "LOOP" : "WRITE");
         kf.bt.sc = str_len(kf.txt) * 24u - 4u <= 176u ? 4 : 3;
         kf.ink = KID_WHITE;
         kf.bg = RGB(150, 110, 230);
@@ -2566,7 +2576,7 @@ static uint32_t kid_band_setup(uint32_t now)
         return sig;
     } else if (!vol && kid.key >= 0 && now - kid.key_ms < 900u && drum_track(&trk[0]) && !kid.fx) {   /* a drum friend: */
         uint16_t c;                                                   /* the drum's name */
-        const char *w = kid_drum_word((uint32_t)kid.key, &c);
+        const char *w = kid_nl(kid_drum_word((uint32_t)kid.key, &c));
         return kid_band_word(w, str_len(w) * 24u - 4u <= 232u ? 4 : 3, kid_mix(c, RGB(0, 0, 0), 30u),
                              0x900u ^ (uint32_t)(uintptr_t)w * 7u);
     } else if (!vol && ((kid.key >= 0 && now - kid.key_ms < 900u) || KID_OUTER_PC(now) >= 0)) {   /* a note: its letter, big
@@ -2582,7 +2592,7 @@ static uint32_t kid_band_setup(uint32_t now)
         kf.bg2 = kid_mix(KID_NOTE_COL[pc], KID_WHITE, 90u);
         sig = 0x100u | pc;
         if (kid.fx) {
-            kf.txt = KID_FX_NAME[kid.fxk % KX_COUNT];
+            kf.txt = kid_nl(KID_FX_NAME[kid.fxk % KX_COUNT]);
             kf.bt.sc = 4;
             kf.ol = 2;
             kf.ink = KID_WHITE;
@@ -2592,7 +2602,7 @@ static uint32_t kid_band_setup(uint32_t now)
         }
     } else if (kid.fx && !vol) {                          /* an effect held: its word */
         kf.band = KB_NAME;
-        kf.txt = KID_FX_NAME[kid.fxk % KX_COUNT];
+        kf.txt = kid_nl(KID_FX_NAME[kid.fxk % KX_COUNT]);
         kf.bt.sc = 4;
         kf.ink = KID_WHITE;
         kf.bg = KID_RAINBOW[kid.fxk % KX_COUNT];
@@ -2635,6 +2645,7 @@ static uint32_t kid_band_setup(uint32_t now)
         }
         default: break;
         }
+        kf.txt = kid_nl(kf.txt);
         kf.meter = (int8_t)clamp(v, -1, 8);
         kf.bt.sc = kid.hint == KH_LOOK ? 2 : 3;
         kf.ink = KID_WHITE;
@@ -2660,14 +2671,16 @@ static uint32_t kid_band_setup(uint32_t now)
         kf.bt.x = (int16_t)(58 + (178 - (int32_t)w) / 2);
     kf.bt.y = (int16_t)(kf.band == KB_NOTE ? KID_BAND_Y + 5 : KID_BAND_Y + ((kf.band == KB_HINT ? 40 : 56) - 7 * kf.bt.sc) / 2 + 2);
     if (kf.bt.x < 4 && len < sizeof kf.l1) {              /* too wide even at 3: two lines, split at the middle space */
-        uint32_t i, cut = 0;
+        uint32_t i, cut = 0, hy;                          /* (or hyphen, kept on the first: LIEVEHEERS-BEESTJE) */
         for (i = 0; i < len; i++)
-            if (kf.txt[i] == ' ' && (!cut || (i > cut ? i - len / 2 : len / 2 - i) < (cut > len / 2 ? cut - len / 2 : len / 2 - cut)))
+            if ((kf.txt[i] == ' ' || kf.txt[i] == '-') &&
+                (!cut || (i > len / 2 ? i - len / 2 : len / 2 - i) < (cut > len / 2 ? cut - len / 2 : len / 2 - cut)))
                 cut = i;
         if (cut) {
-            for (i = 0; i < cut; i++)
+            hy = kf.txt[cut] == '-';
+            for (i = 0; i < cut + hy; i++)
                 kf.l1[i] = kf.txt[i];
-            kf.l1[cut] = 0;
+            kf.l1[cut + hy] = 0;
             str_cpy(kf.l2, kf.txt + cut + 1, sizeof kf.l2);
             kf.bt.s = kf.l1;
             kf.bt.sc = kf.bt2.sc = 3;
@@ -3247,12 +3260,20 @@ static int32_t kid_hello_line(const char *s, int32_t sc, int32_t top, uint32_t f
 static uint16_t kid_hello_px(int32_t x, int32_t y)
 {
     int32_t c;
-    if (kid.hello_name[0] ? (c = kid_hello_line("HI", 7, 14, 0u, x, y)) >= 0 ||
+    static const char *hi, *hi1;                                  /* (in Dutch: looked up once, not every pixel) */
+    if (!hi) {
+        hi = kid_nl("HI");
+        hi1 = kid_nl("HI!");
+    }
+    if (kid.hello_name[0] ? (c = kid_hello_line(hi, 7, 14, 0u, x, y)) >= 0 ||
                             (c = kid_hello_line(kid.hello_name, kid.hello_sc, 76, 2u, x, y)) >= 0
-                          : (c = kid_hello_line("HI!", 8, 34, 0u, x, y)) >= 0)
+                          : (c = kid_hello_line(hi1, 8, 34, 0u, x, y)) >= 0)
         return (uint16_t)c;
 #if BOARD_SMK37
-    if (y >= 190 && (c = kid_hello_line("RAINBOW", 3, 196, 3u, x, y)) >= 0)
+    static const char *rb;
+    if (!rb)
+        rb = kid_nl("RAINBOW");
+    if (y >= 190 && (c = kid_hello_line(rb, 3, 196, 3u, x, y)) >= 0)
         return (uint16_t)c;
 #endif
     if ((c = kid_confetti(x, y, 14u, 5u)) >= 0)
@@ -3508,12 +3529,18 @@ static uint16_t kw_px(int32_t x, int32_t y)
 /* the grown-ups' NAME: the name in rainbow letters on ten places, the one being changed lit (blinking), and how */
 static uint16_t kid_name_px(int32_t x, int32_t y)
 {
-    static const kid_txt_t T[5] = {
+    static kid_txt_t T[5] = {
         {"YOUR NAME", 40, 16, 3}, {"PRESETS  LETTER", 30, 120, 2}, {"ALGORITHM  NEXT", 30, 146, 2},
         {"SAVE  KEEP IT", 42, 172, 2}, {"HOME  LEAVE IT", 36, 198, 2}};
+    static uint8_t nl;
     static const int8_t OX[4] = {-1, 1, 0, 0}, OY[4] = {0, 0, -1, 1};
     const uint16_t BG = RGB(255, 246, 228);
     int32_t i, k, c;
+    for (i = 0; !nl && i < 5; i++) {                              /* (in Dutch, centred again: once) */
+        T[i].s = kid_nl(T[i].s);
+        T[i].x = (int16_t)((240 - (int32_t)str_len(T[i].s) * 6 * T[i].sc + T[i].sc) / 2);
+    }
+    nl = 1;
     for (i = 0; i < 5; i++)
         if (y >= T[i].y - 2 && y < T[i].y + 7 * T[i].sc + 2 && (c = i ? kid_ink_at(&T[i], x, y) : kid_text_at(&T[i], x, y, 2)) != 0)
             return c == 1 && !i ? KID_RAINBOW[4] : KID_INK;

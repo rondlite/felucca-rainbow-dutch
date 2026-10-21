@@ -268,6 +268,12 @@ repository and its website are public.
 - `tools/gen_kid_art.py`: the 95 pictures (94 and a secret), drawn from shapes on a 48 x 48 grid and outlined
   automatically. `python3 tools/gen_kid_art.py /tmp/kid_art.h --png /tmp/sheet.png` writes a contact
   sheet to look at. The build runs it (`tools/build.py` generate).
+- `tools/kid_nl.py`: Rainbow mode in Dutch. Every word the screen shows (the friends' and hats' names, and the band's words:
+  YES! is JA!, TRY AGAIN is NOG EENS, the beats, the modes, the knobs' words, the grown-ups' screens) is translated there, in one
+  place; this page still names them in English. `gen_kid_art.py` writes the names in Dutch and a table of the other words
+  (`KID_NL`) that `kid_nl()` in `kid.c` looks up where a word reaches the screen, so `kid.c` itself keeps the English. The build
+  stops if a Dutch word is not in the band's font (capitals, no accents) or would not fit where it shows. A word with no Dutch
+  there shows in English. The full Felucca (HOME and SAVE held) stays in English.
 - `firmware/src/kid.c`: everything else (sounds, knobs, buttons, the screen). It takes over the main
   loop's frame while it is on (`firmware/src/main.c`). Build with `FELUCCA_KID=0` to leave it out.
 - `web/emu/kid_test.mjs`: checks it in the browser build (`node web/emu/kid_test.mjs build/emu/felucca.wasm`).
