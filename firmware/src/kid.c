@@ -1,4 +1,6 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
+/* Changed in October 2026 by rondlite: the words on the screen in Dutch (kid_nl, tools/kid_nl.py), from Josh's Rainbow
+ * mode (github.com/joshbartlettband-web/felucca-rainbow) */
 /* RAINBOW MODE (FELUCCA_KID): the FM-1 as a toy for a small child. It is on from power-up; holding HOME and SAVE
  * together for 3 s leaves it for the full Felucca until the next power-up.
  *   Keys        play the friend's sound; the band shows the note's letter, big, in its colour (C red, D orange,

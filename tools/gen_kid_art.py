@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-3.0-only
+# Changed in October 2026 by rondlite: the names in Dutch (tools/kid_nl.py), from Josh's Rainbow mode
+# (github.com/joshbartlettband-web/felucca-rainbow)
 """Rainbow mode's friends: 40 pixel-art pictures (run by tools/build.py generate()).
 
   gen_kid_art.py OUT.h [--png SHEET.png]

@@ -1,5 +1,11 @@
 # Credits
 
+## Rainbow mode, and this Dutch translation
+
+Rainbow mode is Josh's work (<https://github.com/joshbartlettband-web/felucca-rainbow>, GPL-3.0). This repository is a
+modified version of it: in October 2026 rondlite translated Rainbow mode's screen and its website into Dutch
+(`tools/kid_nl.py`, `landing/`). The translation is dedicated to Nyla.
+
 ## Felucca
 
 Rainbow mode is built on [Felucca](https://github.com/hugelton/Felucca), the multi-engine synthesizer firmware for the M-VAVE FM-1 by

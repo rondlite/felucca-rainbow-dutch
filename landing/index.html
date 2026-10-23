@@ -1,16 +1,18 @@
 <!doctype html>
 <!-- SPDX-License-Identifier: GPL-3.0-only
-     Rainbow mode's landing page. The workflow (.github/workflows/rainbow.yml) copies this folder to the site's root
-     and fills in @SITE@ (the site's address) and @REPO@ (owner/name). -->
-<html lang="en">
+     Changed in October 2026 by rondlite: translated into Dutch, from Josh's Rainbow mode.
+     Rainbow mode's landing page, in Dutch (the original, in English, is Josh's: joshbartlettband-web/felucca-rainbow).
+     The workflow (.github/workflows/rainbow.yml) copies this folder to the site's root and fills in @SITE@ (the site's
+     address) and @REPO@ (owner/name). -->
+<html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rainbow mode for the FM-1</title>
-<meta name="description" content="A music toy for little hands on the M-VAVE FM-1. 94 friends, 21 beats and a color for every note. It's free, and you can try it in your browser.">
+<title>Regenboogmodus voor de FM-1</title>
+<meta name="description" content="Muziekspeelgoed voor kleine handjes op de M-VAVE FM-1, in het Nederlands. 94 vriendjes, 21 ritmes en een kleur voor elke noot. Het is gratis, en je kunt het in je browser proberen.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Rainbow mode for the FM-1">
-<meta property="og:description" content="A music toy for little hands on the M-VAVE FM-1. 94 friends, 21 beats and a color for every note. It's free, and you can try it in your browser.">
+<meta property="og:title" content="Regenboogmodus voor de FM-1">
+<meta property="og:description" content="Muziekspeelgoed voor kleine handjes op de M-VAVE FM-1, in het Nederlands. 94 vriendjes, 21 ritmes en een kleur voor elke noot. Het is gratis, en je kunt het in je browser proberen.">
 <meta property="og:image" content="@SITE@/card.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23241830'/%3E%3Crect x='3' y='3' width='10' height='2' fill='%23ec3440'/%3E%3Crect x='3' y='6' width='10' height='2' fill='%23ffd82e'/%3E%3Crect x='3' y='9' width='10' height='2' fill='%2350c85a'/%3E%3Crect x='3' y='12' width='10' height='1' fill='%233880f4'/%3E%3C/svg%3E">
@@ -30,9 +32,12 @@
             var(--green) 0 66.66%, var(--blue) 0 83.33%, var(--purple) 0); }
   main, footer { width: 100%; max-width: 920px; margin: 0 auto; padding-inline: 16px; }
   h1 { font-size: clamp(2.6rem, 9vw, 4.4rem); line-height: 1.02; margin: 40px 0 12px; letter-spacing: -.02em; }
-  h1 span:nth-child(1) { color: var(--red); } h1 span:nth-child(2) { color: var(--orange); }
-  h1 span:nth-child(3) { color: var(--yellow); } h1 span:nth-child(4) { color: var(--green); }
-  h1 span:nth-child(5) { color: var(--blue); } h1 span:nth-child(6) { color: var(--purple); }
+  h1 span:nth-child(6n+1) { color: var(--red); } h1 span:nth-child(6n+2) { color: var(--orange); }
+  h1 span:nth-child(6n+3) { color: var(--yellow); } h1 span:nth-child(6n+4) { color: var(--green); }
+  h1 span:nth-child(6n+5) { color: var(--blue); } h1 span:nth-child(6n) { color: var(--purple); }
+  .credit { margin: 32px 0 0; padding: 14px 18px; border-radius: 14px; background: var(--panel); color: var(--soft); font-size: 1rem; }
+  .credit + h1 { margin-top: 24px; }
+  .dedication { margin-top: 22px; color: var(--soft); text-align: center; }
   h2 { font-size: 1.7rem; line-height: 1.15; margin: 56px 0 14px; }
   .lede { font-size: 1.25rem; color: var(--soft); max-width: 36em; margin: 0 0 24px; }
   .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 32px; }
@@ -115,122 +120,124 @@
     .jbm-bottom img { width: 100%; height: auto; aspect-ratio: 1; }
   }
 </style>
-<nav class="jbm-top" aria-label="Other projects by Josh">
+<nav class="jbm-top" aria-label="Andere projecten van Josh">
   <details>
-    <summary>Other projects by Josh</summary>
+    <summary>Andere projecten van Josh</summary>
     <ul>
-      <li><a href="https://joshbartlettband-web.github.io/Double-Rainbow/"><img src="more/double-rainbow.gif" width="52" height="52" alt=""><span><b>Double Rainbow</b><span>Synth characters for the FM-1, ten and up</span></span></a></li>
-      <li><a href="https://joshbartlettband-web.github.io/Fretbound/"><img src="more/fretbound.gif" width="52" height="52" alt=""><span><b>Fretbound</b><span>Ear training for guitarists, in your browser</span></span></a></li>
+      <li><a href="https://joshbartlettband-web.github.io/Double-Rainbow/"><img src="more/double-rainbow.gif" width="52" height="52" alt=""><span><b>Double Rainbow</b><span>Synthfiguren voor de FM-1, vanaf tien jaar (Engels)</span></span></a></li>
+      <li><a href="https://joshbartlettband-web.github.io/Fretbound/"><img src="more/fretbound.gif" width="52" height="52" alt=""><span><b>Fretbound</b><span>Gehoortraining voor gitaristen, in je browser (Engels)</span></span></a></li>
     </ul>
   </details>
 </nav>
 <!--/MORE-TOP-->
 <main>
+  <p class="credit" lang="en">Rainbow mode is Josh's. Josh made it in English, first for one four-year-old and then for the
+    r/MVaveFM1 crowd. This is a Dutch translation of it, the toy's screen and this page. The original is at
+    <a href="https://joshbartlettband-web.github.io/felucca-rainbow/">joshbartlettband-web.github.io/felucca-rainbow</a>.</p>
   <section class="hero">
     <div>
-      <h1><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span> mode</h1>
-      <p class="lede">A music toy for little hands. It's free firmware that turns the M-VAVE FM-1 synth into something a young kid can play. It started as a toy for one four-year-old, and then the r/MVaveFM1 crowd kept sending friends.</p>
+      <h1><span>R</span><span>e</span><span>g</span><span>e</span><span>n</span><span>b</span><span>o</span><span>o</span><span>g</span>modus</h1>
+      <p class="lede">Muziekspeelgoed voor kleine handjes. Het is gratis firmware die van de M-VAVE FM-1-synth iets maakt waar een jong kind op kan spelen. Het begon als speelgoed voor één vierjarige, en daarna bleef de r/MVaveFM1-groep vriendjes sturen.</p>
       <div class="buttons">
-        <a class="btn" href="webapp/try/">Try it in your browser</a>
-        <a class="btn alt" href="webapp/installer/">Put it on an FM-1</a>
+        <a class="btn" href="webapp/try/">Probeer het in je browser</a>
+        <a class="btn alt" href="webapp/installer/">Zet het op een FM-1</a>
       </div>
-      <!--PIN--><p class="lede" style="font-size:1rem;margin:0 0 .6rem">Heads up: the FM-1 installer still has the last version while we check the new one. The browser version has everything.</p><!--/PIN-->
-      <p class="lede" style="font-size:1rem;margin:0">No FM-1? You can still play. Use the keys on the screen or your computer keyboard.</p>
-      <p class="lede" style="font-size:1rem;margin:.6rem 0 0"><a href="rainbow-mode.mp4" download="rainbow-mode.mp4">Download the video</a> (90 seconds) if you want to share it.</p>
+      <!--PIN--><p class="lede" style="font-size:1rem;margin:0 0 .6rem">Let op: de installer voor de FM-1 heeft nog de vorige versie, terwijl we de nieuwe nakijken. De browserversie heeft alles.</p><!--/PIN-->
+      <p class="lede" style="font-size:1rem;margin:0">Geen FM-1? Je kunt toch spelen, met de toetsen op het scherm of het toetsenbord van je computer.</p>
+      <p class="lede" style="font-size:1rem;margin:.6rem 0 0"><a href="rainbow-mode.mp4" download="rainbow-mode.mp4">Download de video</a> (90 seconden) als je hem wilt delen. De video is nog de Engelse.</p>
     </div>
-    <video controls playsinline preload="none" poster="poster.png" aria-label="A 90 second tour of Rainbow mode. It shows the friends, the skies, the hats, the beats, the CHORDS and COPY ME games, the stars that open secrets, and writing a song in loops.">
+    <video controls playsinline preload="none" poster="poster.png" aria-label="Een rondleiding van 90 seconden door Regenboogmodus, in het Engels. Je ziet de vriendjes, de luchten, de hoeden, de ritmes, de spelletjes AKKOORDEN en DOE MIJ NA, de sterren die geheimen openen en een liedje schrijven in lussen.">
       <source src="rainbow-mode.mp4" type="video/mp4">
     </video>
   </section>
 
-  <h2>What it feels like</h2>
+  <h2>Hoe het voelt</h2>
   <ul class="facts">
-    <li>Every key shows its note, big and in its own color, like the bells in a music class. C is red, D is orange, E yellow, F green, G teal, A purple and B pink.</li>
-    <li>There are 94 friends, and each one has its own picture, sound, sky and favorite beat. Ducks, a unicorn, a T-Rex, a fire truck with a siren, a piano that plays a real piano recording. Twelve of them came straight from a kid's imagination, like Spider Mom and Dragon Duck.</li>
-    <li>21 beats, from Disco and Reggae to Lofi, Acid and a real drum break. The bass line always fits whatever keys get pressed.</li>
-    <li>The knobs make the friend big or small, turn day into night, add an echo and make everything wiggle. The top buttons are sound tricks like hiccup, backwards and freeze.</li>
-    <li>The ALGORITHM dial changes how the keys play. One key can play a whole chord. The keys can strum like an Omnichord. Or the black keys hold chords while the white keys play the tune.</li>
-    <li>There are games, too. GUESS is an ear game. FOLLOW lights the next key of 17 old songs. CHORDS teaches chords, from a first C to lofi sevenths. In COPY ME the friend plays a pattern and your kid plays it back.</li>
-    <li>Every game won is a star, and stars open secrets. Ten stars gets a new hat. At 25 the northern lights come out.</li>
-    <li>SAVE opens a big staff for writing songs, Mario Paint style. Each key puts a friend on the staff, PLAY sings it back, and it's still there tomorrow. Play along while it loops to add more.</li>
-    <li>A music staff drops in as you play and writes each note in its color. Hold a key longer and the note gets longer, so a quick tap is a sixteenth and a long press is a whole note.</li>
-    <li>There are 15 skies and ten hats. The hello can greet your kid by name. Grown-ups can set a volume limit for small ears.</li>
-    <li>A few friends look a bit like TV and film characters. If you'd rather not have that, hold HOME for a second, then turn PRESETS left. They swap for original friends with the same sounds.</li>
+    <li>Elke toets laat zijn noot zien, groot en in een eigen kleur, zoals de klokjes in de muziekles. C is rood, D oranje, E geel, F groen, G blauwgroen, A paars en B roze.</li>
+    <li>Er zijn 94 vriendjes, en elk heeft een eigen plaatje, geluid, lucht en lievelingsritme. Eendjes, een eenhoorn, een T-Rex, een brandweerauto met een sirene, een piano die een echte pianoopname speelt. Twaalf kwamen zo uit de fantasie van een kind, zoals Spinnenmama en Drakeneend.</li>
+    <li>21 ritmes, van disco en reggae tot lofi, acid en een echte drumbreak. De baslijn past altijd, welke toetsen er ook worden ingedrukt.</li>
+    <li>De draaiknoppen maken het vriendje groot of klein, maken van dag nacht, voegen een echo toe en laten alles wiebelen. De bovenste knoppen zijn geluidstrucjes, zoals HIK, ACHTERUIT en BEVRIES.</li>
+    <li>De knop ALGORITHM verandert hoe de toetsen spelen. Eén toets kan een heel akkoord spelen. De toetsen kunnen tokkelen zoals een Omnichord. Of de zwarte toetsen houden akkoorden vast terwijl de witte de melodie spelen.</li>
+    <li>Er zijn ook spelletjes. RADEN is een spel voor het gehoor. VOLGEN laat bij 17 oude liedjes steeds de volgende toets oplichten. AKKOORDEN leert akkoorden, van een eerste C tot lofi-septiemen. Bij DOE MIJ NA speelt het vriendje een patroon en speelt je kind het na.</li>
+    <li>Elk gewonnen spelletje is een ster, en sterren openen geheimen. Bij tien sterren komt er een nieuwe hoed. Bij 25 verschijnt het noorderlicht.</li>
+    <li>SAVE opent een grote notenbalk om liedjes te schrijven, zoals in Mario Paint. Elke toets zet een vriendje op de balk, PLAY zingt het terug, en morgen staat het er nog. Speel mee terwijl het rondgaat om er meer bij te zetten.</li>
+    <li>Terwijl je speelt, zakt er een notenbalk naar beneden die elke noot in zijn kleur opschrijft. Hou je een toets langer vast, dan wordt de noot langer. Een snel tikje is een zestiende, lang drukken een hele noot.</li>
+    <li>Er zijn 15 luchten en tien hoeden. De begroeting kan je kind bij naam noemen. Volwassenen kunnen een volumegrens instellen voor kleine oortjes.</li>
+    <li>Een paar vriendjes lijken een beetje op figuren uit tv en film. Liever niet? Hou HOME een seconde vast en draai PRESETS naar links. Dan worden het eigen vriendjes, met dezelfde geluiden.</li>
+    <li>Alles op het scherm is Nederlands: de namen, de spelletjes, JA! en NOG EENS. Een paar namen en ritmes bleven Engels, zoals GOO, ROCK en DISCO. De knoppen heten zoals ze op de FM-1 staan.</li>
   </ul>
 
-  <h2>On the FM-1's screen</h2>
+  <h2>Op het scherm van de FM-1</h2>
   <ul class="screens">
-    <li><img src="screen-1.png" width="480" height="480" alt="A rainbow, a rubber duck and a big HI!"><p><b>Hello</b>A greeting every time it starts</p></li>
-    <li><img src="screen-2.png" width="480" height="480" alt="A rubber duck among bubbles, with a big letter G at the bottom"><p><b>A color for every note</b>Press a key, see its letter</p></li>
-    <li><img src="screen-3.png" width="480" height="480" alt="A unicorn under a rainbow, named at the bottom"><p><b>94 friends</b>Turn PRESETS to meet them</p></li>
-    <li><img src="screen-4.png" width="480" height="480" alt="A ghost in a starry sky, with SPOOKY at the bottom"><p><b>21 beats</b>Press PLAY, and the friend dances</p></li>
-    <li><img src="screen-5.png" width="480" height="480" alt="A very big ghost, with GIANT at the bottom"><p><b>Sound tricks</b>Tap a top button: GIANT</p></li>
-    <li><img src="screen-6.png" width="480" height="480" alt="A night sky with a moon and three ghosts"><p><b>Day to night</b>A knob changes the sky and the sound</p></li>
-    <li><img src="screen-7.png" width="480" height="480" alt="A unicorn under a rainbow, with a music staff above it: quarter notes, a half note and eighth notes, in color"><p><b>Notes, written down</b>In color, and as long as they are held</p></li>
-    <li><img src="screen-8.png" width="480" height="480" alt="A big music staff with friends as notes, and a duck hopping along the top"><p><b>Write a song</b>Press SAVE, then the keys</p></li>
-    <li><img src="screen-9.png" width="480" height="480" alt="A duck in a cap and sunglasses, and the word VOLUME with four of eight dots lit"><p><b>A volume for grown-ups</b>Hold HOME, press OCT- or OCT+</p></li>
+    <li><img src="screen-1.png" width="480" height="480" alt="Een regenboog, een badeendje en een grote HOI!"><p><b>Hoi</b>Een begroeting, elke keer dat hij aangaat</p></li>
+    <li><img src="screen-2.png" width="480" height="480" alt="Een badeendje tussen de bellen, met een grote letter G onderaan"><p><b>Een kleur voor elke noot</b>Druk een toets in en zie zijn letter</p></li>
+    <li><img src="screen-3.png" width="480" height="480" alt="Een eenhoorn onder een regenboog, met EENHOORN onderaan"><p><b>94 vriendjes</b>Draai aan PRESETS om ze te leren kennen</p></li>
+    <li><img src="screen-4.png" width="480" height="480" alt="Een spookje in een sterrenhemel, met GRIEZELIG onderaan"><p><b>21 ritmes</b>Druk op PLAY en het vriendje danst</p></li>
+    <li><img src="screen-5.png" width="480" height="480" alt="Een heel groot spookje, met REUS onderaan"><p><b>Geluidstrucjes</b>Tik op een bovenste knop: REUS</p></li>
+    <li><img src="screen-6.png" width="480" height="480" alt="Een nachtlucht met een maan en drie spookjes, en het akkoord G GROOT onderaan"><p><b>Van dag naar nacht</b>Een draaiknop verandert de lucht en het geluid</p></li>
+    <li><img src="screen-7.png" width="480" height="480" alt="Een eenhoorn onder een regenboog, met een notenbalk erboven vol gekleurde noten"><p><b>Noten, opgeschreven</b>In kleur, en zo lang als ze klinken</p></li>
+    <li><img src="screen-8.png" width="480" height="480" alt="Een grote notenbalk met vriendjes als noten, een robotje en SCHRIJVEN onderaan"><p><b>Schrijf een liedje</b>Druk op SAVE, dan op de toetsen</p></li>
+    <li><img src="screen-9.png" width="480" height="480" alt="Een eendje met een regenbooghoedje en een zonnebril, en het woord VOLUME met vier van de acht stippen aan"><p><b>Een volume voor volwassenen</b>Hou HOME vast, druk op OCT- of OCT+</p></li>
   </ul>
 
-  <h2>Meet the friends</h2>
-  <img class="poster" src="friends.png" width="1080" height="1350" alt="All 94 friends with their names">
+  <h2>Maak kennis met de vriendjes</h2>
+  <img class="poster" src="friends.png" width="1080" height="1350" alt="Alle 94 vriendjes met hun Nederlandse namen">
 
-  <h2>Try it</h2>
+  <h2>Probeer het</h2>
   <div class="cards">
     <div class="card">
-      <h3>In your browser</h3>
-      <p>The same firmware, right in your browser. It works on computers, phones and tablets.</p>
-      <a class="btn" href="webapp/try/">Open the demo</a>
-      <small>Turn your sound on. You might need to tap once to get it going.</small>
+      <h3>In je browser</h3>
+      <p>Dezelfde firmware, gewoon in je browser. Het werkt op computers, telefoons en tablets.</p>
+      <a class="btn" href="webapp/try/">Open de demo</a>
+      <small>Zet je geluid aan. Misschien moet je één keer tikken om het op gang te krijgen.</small>
     </div>
     <div class="card">
-      <h3>On an M-VAVE FM-1</h3>
-      <p>Plug it in with USB and press Install. It takes about a minute.</p>
-      <a class="btn alt" href="webapp/installer/">Open the installer</a>
-      <small>You'll need Chrome or Edge on a computer or an Android phone, and a USB cable. Safari and iPhones can't do it.</small>
+      <h3>Op een M-VAVE FM-1</h3>
+      <p>Sluit hem aan met USB en druk op Install. Het duurt ongeveer een minuut.</p>
+      <a class="btn alt" href="webapp/installer/">Open de installer</a>
+      <small>Je hebt Chrome of Edge nodig op een computer of een Android-telefoon, en een USB-kabel. Met Safari en iPhones gaat het niet. De installer zelf is in het Engels.</small>
     </div>
   </div>
-  <!--DONATE-->
   <div class="card tip">
-    <h3>Say thanks</h3>
-    <p>Rainbow mode is free and always will be. If it's brought some joy to your house, you can leave a tip. Please give Felucca a star too, since Rainbow mode is built on it.</p>
+    <h3>Zeg dank je wel</h3>
+    <p>Regenboogmodus is gratis en blijft gratis. Wil je Josh bedanken? Een ster op GitHub helpt, voor Regenboogmodus en ook voor Felucca, want daar is het op gebouwd.</p>
     <div class="buttons" style="margin:0">
-      <a class="btn" href="@DONATE@" rel="noopener">Leave a tip</a>
-      <a class="btn alt" href="https://github.com/hugelton/Felucca" rel="noopener">Felucca on GitHub</a>
+      <a class="btn" href="https://github.com/joshbartlettband-web/felucca-rainbow" rel="noopener">Regenboogmodus op GitHub</a>
+      <a class="btn alt" href="https://github.com/hugelton/Felucca" rel="noopener">Felucca op GitHub</a>
     </div>
   </div>
-  <!--/DONATE-->
   <details>
-    <summary>Is it safe? Can I go back?</summary>
-    <p>Yes. The installer page has a "Return to official V15" section. You grab the official file from M-VAVE's website, and the installer backs up your FM-1 before it switches back. Installing firmware is always at your own risk. This is a fan project. M-VAVE didn't make it and doesn't endorse it.</p>
+    <summary>Is het veilig? Kan ik terug?</summary>
+    <p>Ja. Op de pagina van de installer staat een stuk "Return to official V15". Je haalt het officiële bestand van de website van M-VAVE, en de installer maakt een back-up van je FM-1 voordat hij terugschakelt. Firmware installeren is altijd op eigen risico. Dit is een fanproject. M-VAVE heeft het niet gemaakt en staat er niet achter.</p>
   </details>
   <details>
-    <summary>How do I leave Rainbow mode?</summary>
-    <p>Hold HOME and SAVE together for 3 seconds. You get the full Felucca synth, with your last session right where you left it. Rainbow mode comes back the next time the FM-1 is switched on.</p>
+    <summary>Hoe kom ik uit Regenboogmodus?</summary>
+    <p>Hou HOME en SAVE samen 3 seconden vast. Dan krijg je de volledige Felucca-synth (in het Engels), met je laatste sessie precies waar je hem liet. Regenboogmodus komt terug als de FM-1 weer aangaat.</p>
   </details>
 
 
 <section class="thanks" aria-labelledby="thanks">
-  <h2 id="thanks">Thank you</h2>
-  <p class="lede" style="font-size:1rem">These ideas came from people on r/MVaveFM1.</p>
+  <h2 id="thanks">Dank je wel</h2>
+  <p class="lede" style="font-size:1rem">Deze ideeën kwamen van mensen op r/MVaveFM1.</p>
   <ul class="facts">
-    <li><b>u/veecheech</b> suggested the T-Rex, Skeleton, Rancher, Rodeo, Vacuum and Space Hero, and the Omnichord-style STRUM.</li>
-    <li><b>u/theskyisfalling1</b> asked for note lengths on the staff, so kids pick up rhythm too.</li>
-    <li><b>u/lastapoc</b> wanted a Mario Paint style song maker. That became WRITE.</li>
-    <li><b>u/nutty_cartoon</b> came up with chord names, the GUESS ear game and FOLLOW.</li>
-    <li><b>u/Yablan</b> asked for chord lessons. That became CHORDS.</li>
-    <li><b>u/litomanu</b> wanted 303 acid sounds. Now there's the Scientist, the Flytrap, the Sunflower and the ACID beat.</li>
-    <li><b>u/ReallyLongLake</b> asked for a switch that swaps the look-alike friends for original ones.</li>
+    <li><b>u/veecheech</b> bedacht de T-Rex, het Skelet, de Cowboy, Rodeo, de Stofzuiger en de Ruimteheld, en TOKKELEN zoals op een Omnichord.</li>
+    <li><b>u/theskyisfalling1</b> vroeg om nootlengtes op de notenbalk, zodat kinderen ook ritme oppikken.</li>
+    <li><b>u/lastapoc</b> wilde een liedjesmaker zoals in Mario Paint. Dat werd SCHRIJVEN.</li>
+    <li><b>u/nutty_cartoon</b> bedacht de namen van de akkoorden, het spel RADEN en VOLGEN.</li>
+    <li><b>u/Yablan</b> vroeg om akkoordlessen. Dat werd AKKOORDEN.</li>
+    <li><b>u/litomanu</b> wilde 303-acidgeluiden. Nu zijn er de Professor, de Vliegenvanger, de Zonnebloem en het ritme ACID.</li>
+    <li><b>u/ReallyLongLake</b> vroeg om een schakelaar die de vriendjes die op tv-figuren lijken omruilt voor eigen vriendjes.</li>
   </ul>
-  <p style="color:var(--soft);font-size:.95rem">Got an idea for a friend, a sound or a game? Tell us on r/MVaveFM1. Everyone is listed in <a href="https://github.com/@REPO@/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+  <p style="color:var(--soft);font-size:.95rem">Een idee voor een vriendje, een geluid of een spelletje? Vertel het op r/MVaveFM1 (in het Engels). Iedereen staat in <a href="https://github.com/@REPO@/blob/main/CREDITS.md">CREDITS.md</a>.</p>
 </section>
 </main>
 
 <!--MORE-BOTTOM-->
 <section class="jbm-bottom" aria-labelledby="jbm-h">
-  <h2 id="jbm-h">Other projects by Josh</h2>
+  <h2 id="jbm-h">Andere projecten van Josh</h2>
   <ul>
-    <li><a href="https://joshbartlettband-web.github.io/Double-Rainbow/"><img src="more/double-rainbow.gif" width="240" height="240" loading="lazy" alt="Double Rainbow, a few of its screens"><div><b>Double Rainbow</b><span>Firmware for the M-VAVE FM-1. 24 sounds got out of the Keeper's jars, and each one is a real synth engine you learn by playing. For ages ten and up.</span><em>Take a look</em></div></a></li>
-    <li><a href="https://joshbartlettband-web.github.io/Fretbound/"><img src="more/fretbound.gif" width="240" height="240" loading="lazy" alt="Fretbound, a few of its screens"><div><b>Fretbound</b><span>An ear-training game for guitarists. A rival plays a phrase and you play it back on the fretboard. It runs in your browser.</span><em>Take a look</em></div></a></li>
+    <li><a href="https://joshbartlettband-web.github.io/Double-Rainbow/"><img src="more/double-rainbow.gif" width="240" height="240" loading="lazy" alt="Double Rainbow, een paar van zijn schermen"><div><b>Double Rainbow</b><span>Firmware voor de M-VAVE FM-1. 24 geluiden zijn ontsnapt uit de potten van de Keeper, en elk is een echte synth die je leert door te spelen. Vanaf tien jaar, in het Engels.</span><em>Neem een kijkje</em></div></a></li>
+    <li><a href="https://joshbartlettband-web.github.io/Fretbound/"><img src="more/fretbound.gif" width="240" height="240" loading="lazy" alt="Fretbound, een paar van zijn schermen"><div><b>Fretbound</b><span>Een gehoorspel voor gitaristen. Een tegenstander speelt een frase en jij speelt hem na op de hals. Het draait in je browser, in het Engels.</span><em>Neem een kijkje</em></div></a></li>
   </ul>
 </section>
 <script>
@@ -244,8 +251,20 @@
 </script>
 <!--/MORE-BOTTOM-->
 <footer>
-  <p>Rainbow mode is built on <a href="https://github.com/hugelton/Felucca">Felucca</a>, the synth firmware for the FM-1 by Leo Kuroshita and Hügelton Instruments. It's a fork that adds the toy on top.</p>
-  <p>It's free and open source under the GPL-3.0. The code and a guide to every control are at <a href="https://github.com/@REPO@">github.com/@REPO@</a>. All the pictures are original drawings.</p>
+  <p>Regenboogmodus is gemaakt door Josh: <a href="https://github.com/joshbartlettband-web/felucca-rainbow">github.com/joshbartlettband-web/felucca-rainbow</a>. Het is
+    gebouwd op <a href="https://github.com/hugelton/Felucca">Felucca</a>, de synthfirmware voor de FM-1 van Leo Kuroshita
+    (@kurogedelic) en Hügelton Instruments. Regenboogmodus is een fork van Felucca die het speelgoed erbovenop zet.</p>
+  <p>Dit is een aangepaste versie. rondlite heeft in oktober 2026 alle tekst op het scherm van Regenboogmodus vertaald,
+    en deze pagina ook. De broncode van precies deze versie staat op <a href="https://github.com/@REPO@">github.com/@REPO@</a>.</p>
+  <p>Het is vrije software onder de <a href="https://github.com/@REPO@/blob/main/LICENSE">GPL-3.0</a>, zonder enige garantie.
+    Een paar onderdelen hebben hun eigen licentie: de FM6-klank uit msfa van Dexed (Google Inc., Pascal Gauthier, Apache-2.0),
+    de PHYS-klanken naar DaisySP en Rings (Electrosmith, Emilie Gillet, MIT), de Fukiai-iconen (MIT), het lettertype Inter Tight
+    (SIL OFL 1.1), de samples van Versilian Studios (CC0) en de solsleutel uit FreeSerif (GNU FreeFont, GPL-3.0 of later).
+    Elk installatiepakket heeft ook drie bestanden uit de JieLi AC79 SDK (Apache-2.0). Alles staat in
+    <a href="https://github.com/@REPO@/blob/main/LICENSING.md">LICENSING.md</a> en
+    <a href="https://github.com/@REPO@/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+  <p>M-VAVE en FM-1 zijn handelsmerken van hun eigenaren. Alle plaatjes zijn eigen tekeningen.</p>
+  <p class="dedication">Deze vertaling is opgedragen aan Nyla.</p>
 </footer>
 </body>
 </html>

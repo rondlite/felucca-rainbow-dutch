@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
+# Written in October 2026 by rondlite, for the Dutch translation of Josh's Rainbow mode
 """Rainbow mode in Dutch: every word it shows, in one place (read by tools/gen_kid_art.py).
 
   NAMES   the friends and the look-alikes' stand-ins: KID_NAME in kid_art.h is written in Dutch

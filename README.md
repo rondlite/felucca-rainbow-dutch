@@ -1,4 +1,18 @@
-# Rainbow mode for the FM-1
+# Rainbow mode for the FM-1, in Dutch (Regenboogmodus)
+
+**This is a modified version: a Dutch translation of Josh's Rainbow mode.** Josh made Rainbow mode, in English:
+[github.com/joshbartlettband-web/felucca-rainbow](https://github.com/joshbartlettband-web/felucca-rainbow). It is built on
+[Felucca](https://github.com/hugelton/Felucca) by Leo Kuroshita (@kurogedelic) and Hügelton Instruments. In October 2026,
+rondlite translated every word on Rainbow mode's screen into Dutch (`tools/kid_nl.py`), and the website with it
+(`landing/`, its pictures made by `tools/landing/images_nl.py`). The full Felucca and the installer stay in English. The
+licence is the same, GPL-3.0 (`LICENSE`, `LICENSING.md`), and the commits show every change.
+
+This translation is dedicated to Nyla.
+
+The rest of this README is Josh's, as it was.
+
+---
+
 
 A music toy for little hands: this fork of [Felucca](https://github.com/hugelton/Felucca) starts the M-VAVE FM-1 as a toy for
 young children. 94 friends, each with its own picture, sound, sky and favorite beat; a color for every note; 21 beats with a

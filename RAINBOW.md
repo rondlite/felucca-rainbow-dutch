@@ -277,6 +277,8 @@ repository and its website are public.
 - `firmware/src/kid.c`: everything else (sounds, knobs, buttons, the screen). It takes over the main
   loop's frame while it is on (`firmware/src/main.c`). Build with `FELUCCA_KID=0` to leave it out.
 - `web/emu/kid_test.mjs`: checks it in the browser build (`node web/emu/kid_test.mjs build/emu/felucca.wasm`).
+- `landing/` in this fork is in Dutch, and so are its screenshots, the friends' poster and the link card
+  (`tools/landing/images_nl.py` makes the last two). The video is still the English one.
 - `landing/`: the site's front page (the one link to share): a demo video, screenshots, the friends and how to try it. The workflow
   copies it to the site's root and fills in the site's address.
 - `.github/workflows/rainbow.yml`: GitHub builds the firmware and the browser version on every push to
