@@ -2,3 +2,7 @@
 # One run number, nothing else on its line. Every build stays: this only chooses which package the installer offers.
 # (The browser version, "Try it", and the private installer follow the newest build.)
 # To go back to the newest, delete the number (or this file's last line) and push.
+#
+# Unpinned on 2026-10-24 at Josh's word: the installer serves the newest build again. (It was pinned on 2026-10-15 to run
+# 38745022376, commit 2539ec9, the build before the stars, the cheer, the break beat, 18 friends in sets, loop and layer
+# and four new skies.)
